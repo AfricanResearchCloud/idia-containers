@@ -1,0 +1,32 @@
+############################################
+## Singularity Definition File 		   # 
+## Project: IDIA 			   #
+## Sysadmin: Timothy Carr / Stephen Coetzee# 
+## Application: Python 3 + modules	   #
+############################################
+
+BootStrap: debootstrap
+OSVersion: xenial
+MirrorURL: http://archive.ubuntu.com/ubuntu/
+Include: bash
+%post
+    # Lets do some cool stuff ..  
+    apt-get update
+    apt-get -y install wget bzip2 software-properties-common
+
+    # Install Anaconda Python2
+    wget "https://repo.continuum.io/archive/Anaconda2-4.3.1-Linux-x86_64.sh"
+    bash Anaconda2-4.3.1-Linux-x86_64.sh -f -b -p /opt/anaconda2
+    echo "export PATH="/opt/anaconda2/bin:$PATH"" >> /environment
+    echo "export PYTHONPATH=$PYTHONPATH:/opt/apercal" >> /environment
+
+    # Create /users directory so that the bind configured in singularity.conf pulls the home
+    # directories through to the container automatically. 
+    mkdir -p /users
+
+    # Lets clean up the image
+    rm Anaconda2-4.3.1-Linux-x86_64.sh
+    rm -rf /var/lib/apt/lists/*
+
+%runscript
+    exec /opt/anaconda2/bin/python "$@"

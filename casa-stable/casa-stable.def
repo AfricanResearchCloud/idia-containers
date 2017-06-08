@@ -1,0 +1,20 @@
+BootStrap: yum
+OSVersion: 7
+MirrorURL: http://mirror.centos.org/centos-%{OSVERSION}/%{OSVERSION}/os/$basearch/
+Include: yum
+
+# If you want the updates (available at the bootstrap date) to be installed
+# inside the container during the bootstrap instead of the General Availability
+# point release (7.x) then uncomment the following line
+UpdateURL: http://mirror.centos.org/centos-%{OSVERSION}/%{OSVERSION}/updates/$basearch/
+
+%post
+	yum -y install centos-release-scl
+	yum -y install wget vim svn git gcc cmake python libXrandr-dev* libXcursor-dev* libXinerama-dev* libfontconfig-dev* libfontconfig fontconfig-dev libGL* libGL-dev* fontconfig-dev* libSM-dev* libX11-dev* libXext-dev* libXi-dev* libXrender-dev*
+	mkdir -p /users
+	mkdir -p /opt/casa 
+	cd /opt/casa
+	wget https://casa.nrao.edu/download/distro/linux/release/el7/casa-release-4.7.2-el7.tar.gz
+	tar xfvz casa-release-4.7.2-el7.tar.gz
+
+#%runscript

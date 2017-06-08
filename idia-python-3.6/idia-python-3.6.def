@@ -1,0 +1,30 @@
+############################################
+## Idia Singularity Definition File	   # 
+## Project: IDIA 			   #
+## Sysadmin: Timothy Carr / Stephen Coetzee# 
+############################################
+
+BootStrap: debootstrap
+OSVersion: xenial
+MirrorURL: http://archive.ubuntu.com/ubuntu/
+Include: bash
+%post
+    # Lets do some cool stuff ..  
+    apt-get update
+    apt-get -y install wget bzip2 build-essential zlib1g-dev software-properties-common libncurses5-dev
+
+    # Install Anaconda Python3
+    wget "https://repo.continuum.io/archive/Anaconda3-4.3.1-Linux-x86_64.sh"
+    bash Anaconda3-4.3.1-Linux-x86_64.sh -b -p /opt/anaconda3
+    echo "export PATH="/opt/anaconda3/bin:$PATH"" >> /environment
+
+    # Create /users directory so that the bind configured in singularity.conf pulls the home
+    # directories through to the container automatically. 
+    mkdir -p /users
+
+    # Lets clean up the image
+    rm Anaconda3-4.3.1-Linux-x86_64.sh
+    rm -rf /var/lib/apt/lists/*
+
+%runscript 
+    exec /opt/anaconda3/bin/python "$@"
