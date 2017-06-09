@@ -17,4 +17,7 @@ UpdateURL: http://mirror.centos.org/centos-%{OSVERSION}/%{OSVERSION}/updates/$ba
 	wget https://casa.nrao.edu/download/distro/linux/release/el7/casa-release-4.7.2-el7.tar.gz
 	tar xfvz casa-release-4.7.2-el7.tar.gz
 
+	# Add to environment
+	echo "export PATH=/opt/casa/casa-release-4.7.2-el7/bin/:$PATH" >> /environment
+
 #%runscript
