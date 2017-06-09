@@ -23,6 +23,7 @@ Include: software-properties-common
         rm /var/lib/dpkg/info/texlive-fonts-recommended.list 
 
 	apt-get install python-pip
+	pip install ipykernel
 	apt-get clean
 	apt-get autoclean
 	
@@ -30,3 +31,4 @@ Include: software-properties-common
 	mkdir -p /users
 
 %runscript 
+	exec /usr/bin/python "$@"
