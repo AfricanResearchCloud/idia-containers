@@ -4,15 +4,13 @@ IMAGE=kern-2.img
 
 all: bootstrap
 
+# Increased the storage allocation for KERN2. The default of 10GB was not enough. 
 ${IMAGE}:
-	sudo singularity create -s 10000 ${IMAGE}
+	sudo singularity create -s 20000 ${IMAGE}
 
 bootstrap: ${IMAGE}
-	sudo singularity bootstrap ${IMAGE} Singularity
+	sudo singularity bootstrap ${IMAGE} os-default-ubu16.def 
 
 upgrade:
 	sudo singularity exec --writable ${IMAGE} apt-get update
 	sudo singularity exec --writable ${IMAGE} apt-get upgrade
-
-list:
-	curl -s http://ppa.launchpad.net/kernsuite/kern-2/ubuntu/dists/xenial/main/binary-amd64/Packages.gz | zgrep Package | awk {'print $$2}' | xargs echo
