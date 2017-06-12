@@ -1,6 +1,6 @@
-# IDIA Software Containers - Singularity 
+# IDIA Software Containers
 
-Inter University Data Intensive Astronomy repository which contains the singularity definition files for building the containers
+Inter-University Data Intensive Astronomy repository which contains the singularity definition files for building the containers
 
 ## Getting Started
 
@@ -12,8 +12,6 @@ These instructions will get you a copy of the project up and running on your loc
 
 
 ### Installing Singularity
-
-A step by step series of examples that tell you have to get a development env running
 
 Install Singularity 
 
