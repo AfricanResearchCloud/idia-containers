@@ -8,16 +8,14 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-[link](http://singularity.lbl.gov/ "Singularity") 
-```
-Give examples
-```
+[Singularity](http://singularity.lbl.gov/ "Singularity")
 
-### Installing
+
+### Installing Singularity
 
 A step by step series of examples that tell you have to get a development env running
 
-Install Singularity from
+Install Singularity 
 
 ```
 VERSION=2.3
