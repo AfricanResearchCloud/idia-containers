@@ -6,5 +6,10 @@ pipeline {
         echo 'This is the start of the pipeline'
       }
     }
+    stage('Build') {
+      steps {
+        sh 'make all '
+      }
+    }
   }
 }
