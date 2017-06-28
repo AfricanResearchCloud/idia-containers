@@ -16,7 +16,7 @@ These instructions will get you a copy of the project up and running on your loc
 Install Singularity 
 
 ```
-VERSION=2.3
+VERSION=2.3.1
 wget https://github.com/singularityware/singularity/releases/download/$VERSION/singularity-$VERSION.tar.gz
 tar xvf singularity-$VERSION.tar.gz
 cd singularity-$VERSION
