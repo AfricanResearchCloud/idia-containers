@@ -18,9 +18,9 @@ Include: bash
     bash Anaconda3-4.3.1-Linux-x86_64.sh -b -p /opt/anaconda3
     echo "export PATH="/opt/anaconda3/bin:$PATH"" >> /environment
 
-    # Create /users directory so that the bind configured in singularity.conf pulls the home
-    # directories through to the container automatically. 
-    mkdir -p /users
+    # Create directory so that the bind configured in singularity.conf pulls the home
+    # directories and others through to the container automatically. 
+    mkdir -p /users /data /scratch
 
     # Lets clean up the image
     rm Anaconda3-4.3.1-Linux-x86_64.sh
