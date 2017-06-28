@@ -22,9 +22,9 @@ Include: software-properties-common
 	# A corruption occurs with texlive and removing this file fixes the problem.
         rm /var/lib/dpkg/info/texlive-fonts-recommended.list 
 
-	# Install pip and the iPython Kernel because we need the launcher for Jupyter Hub. Do some cleaning up. 
+	# Install pip and configure additional packages via pip. Do some cleaning up. 
 	apt-get install python-pip
-	pip install ipykernel
+	pip install ipykernel atpy
 	apt-get clean
 	apt-get autoclean
 	
