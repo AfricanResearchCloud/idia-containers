@@ -29,7 +29,7 @@ Include: software-properties-common
 	apt-get autoclean
 	
 	# Create /users to bind home directories into the container.
-	mkdir -p /users
+	mkdir -p /users /scratch /data 
 
 %runscript 
 	exec /usr/bin/python "$@"
