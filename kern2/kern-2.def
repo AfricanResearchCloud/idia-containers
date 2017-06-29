@@ -22,14 +22,19 @@ Include: software-properties-common
 	# A corruption occurs with texlive and removing this file fixes the problem.
         rm /var/lib/dpkg/info/texlive-fonts-recommended.list 
 
-	# Install pip and configure additional packages via pip. Do some cleaning up. 
+	# Install pip and ipykernel for use with jupyter hub. 
 	apt-get install python-pip
-	pip install ipykernel atpy
+	pip install ipykernel
+
+	# Additional packages installed via pip can be added here.
+	pip install atpy
+
+	# Create /users to bind home directories into the container.
+        mkdir -p /users /scratch /data
+
+	# Cleanup 
 	apt-get clean
 	apt-get autoclean
-	
-	# Create /users to bind home directories into the container.
-	mkdir -p /users /scratch /data 
 
 %runscript 
 	exec /usr/bin/python "$@"
