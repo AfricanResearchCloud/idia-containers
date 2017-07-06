@@ -38,9 +38,9 @@ Include: software-properties-common
 
 %runscript 
 if [ $# -eq 0 ]; then
-        echo "The following Python modules is installed in this image:"
+        echo "The following Python modules are installed in this image:"
         pip freeze
-        echo "The following Python modules is installed in this image:"
+        echo "The following Python modules are installed in this image:"
         echo "Example usage: singularity.img [command] [args] [options]"  
 else
         exec "$@"
