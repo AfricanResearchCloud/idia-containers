@@ -27,7 +27,7 @@ Include: software-properties-common
 	pip install ipykernel
 
 	# Additional packages installed via pip can be added here.
-	pip install atpy
+	pip install atpy singularity
 
 	# Create /users to bind home directories into the container.
         mkdir -p /users /scratch /data
@@ -37,4 +37,11 @@ Include: software-properties-common
 	apt-get autoclean
 
 %runscript 
-	exec /usr/bin/python "$@"
+if [ $# -eq 0 ]; then
+        echo "The following Python modules is installed in this image:"
+        pip freeze
+        echo "The following Python modules is installed in this image:"
+        echo "Example usage: singularity.img [command] [args] [options]"  
+else
+        exec "$@"
+fi
