@@ -8,16 +8,20 @@ Include: yum
 # point release (7.x) then uncomment the following line
 UpdateURL: http://mirror.centos.org/centos-%{OSVERSION}/%{OSVERSION}/updates/$basearch/
 
+%environment
+	export LC_ALL=C
+	export PATH=/opt/casa/casa-release-5.1.0-74.el7/bin/:$PATH
+
 %post
 	yum -y install centos-release-scl
-	yum -y install wget vim svn git gcc cmake python libXrandr-dev* libXcursor-dev* libXinerama-dev* libfontconfig-dev* libfontconfig fontconfig-dev libGL* libGL-dev* fontconfig-dev* libSM-dev* libX11-dev* libXext-dev* libXi-dev* libXrender-dev*
+	yum -y install wget vim svn git gcc cmake python libXrandr-dev* libXcursor-dev* libXinerama-dev* libfontconfig-dev* libfontconfig fontconfig-dev libXft* libGL* libGL-dev* fontconfig-dev* libSM-dev* libX11-dev* libXext-dev* libXi-dev* libXrender-dev*
 	mkdir -p /users
 	mkdir -p /opt/casa 
 	cd /opt/casa
-	wget https://casa.nrao.edu/download/distro/linux/release/el7/casa-release-4.7.2-el7.tar.gz
-	tar xfvz casa-release-4.7.2-el7.tar.gz
+	#wget -O - https://casa.nrao.edu/download/distro/linux/release/el7/casa-release-5.1.0-74.el7.tar.gz | tar xz
+	wget -O - https://alma-dl.mtk.nao.ac.jp/ftp/casa/distro/linux/release/el7/casa-release-5.1.0-74.el7.tar.gz | tar xz
 
-	# Add to environment
-	echo "export PATH=/opt/casa/casa-release-4.7.2-el7/bin/:$PATH" >> /environment
+	# Create /users to bind home directories into the container.
+	mkdir -p /users /scratch /data
 
 #%runscript

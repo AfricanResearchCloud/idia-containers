@@ -12,3 +12,6 @@ bootstrap: ${IMAGE}
 
 upgrade:
 	sudo singularity exec --writable ${IMAGE} yum update 
+
+clean:
+	rm -f ${IMAGE}
