@@ -1,3 +1,5 @@
+## Please note that this repo is outdated and no longer maintained.  Newer versions of several of these container definition files may be found at https://github.com/idia-astro?q=idia-container or inside containers themselves at `/.singularity.d/Singularity`
+
 # IDIA Software Containers
 
 Inter-University Data Intensive Astronomy repository which contains the singularity definition files for building the containers
